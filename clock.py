@@ -3,25 +3,41 @@ from datetime import datetime, timedelta
 
 
 def calculate_timezone_time(current_time, time_difference):
-    try:
-        current_time_obj = datetime.strptime(current_time, "%H%M")
-        time_difference_obj = timedelta(hours=int(time_difference[:2]), minutes=int(time_difference[2:]))
+    new_hours_str=""
+    new_mins_str=""
+    if(time_difference[0]=="-"):
+        new_hours=int(current_time[:2])-int(time_difference[1:3])
+        new_mins=int(current_time[3:])-int(time_difference[3:])
+        if(new_mins<0):
+            new_mins+=60
+            new_hours-=1
 
-        new_time_obj = current_time_obj + time_difference_obj
+        if (new_hours < 0):
+            new_hours +=24
+    else:
+        new_hours=int(current_time[:2])+int(time_difference[1:3])
+        new_mins=int(current_time[2:])+int(time_difference[3:])
+        if(new_mins>60):
+            new_mins-=60
+            new_hours+=1
 
-        new_time_formatted = new_time_obj.strftime("%H%M")
-
-        return new_time_formatted
-    except ValueError:
-        return "Invalid time format. Please use HHMM format."
+        if(new_hours > 24):
+            new_hours-=24
+    new_hours_str = str(new_hours)
+    new_mins_str = str(new_mins)
+    if(new_mins<10):
+        new_mins_str="0" + str(new_mins)
+    if(new_hours<10):
+        new_hours_str="0" + str(new_hours)
+    print(new_hours_str + new_mins_str)
+    return new_hours_str + new_mins_str
 
 
 # Example usage
-current_time = "2358"  # Replace this with your current time in HHMM format
+current_time = "0400"  # Replace this with your current time in HHMM format
 time_difference = "0900"  # Replace this with the time difference in HHMM format
 
-new_time = calculate_timezone_time(current_time, time_difference)
-print(f"New time at the specified timezone: {new_time}")
+
 
 utc_diff = {
     "united states": "-0400",  # Eastern Daylight Time
@@ -72,3 +88,7 @@ utc_diff = {
     "peru": "-0500",  # Peru Time
     "vietnam": "+0700",  # Indochina Time
 }
+
+new_time = calculate_timezone_time(current_time, utc_diff["colombia"])
+print(current_time + utc_diff["united kingdom"])
+print(f"New time at the specified timezone: {new_time}")
