@@ -5,7 +5,8 @@ if os.path.isfile(file_path):
     text_file = open(file_path, "r")
     data = text_file.read()
     text_file.close()
-    print(data)
+else:
+    data = input("File not found, Enter API key")
 openai.api_key= data
 def getGPTAnswer(query,type):
     if(type == "explain"):
