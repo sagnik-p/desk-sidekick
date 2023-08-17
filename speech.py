@@ -6,7 +6,7 @@ from playsound import playsound
 import os
 
 # The text that you want to convert to audio
-mytext = 'Welcome to geeksforgeeks!'
+mytext = 'Hello this is an example text.. this should giv eyou an idea of how i sound!'
 
 # Language in which you want to convert
 language = 'en'
