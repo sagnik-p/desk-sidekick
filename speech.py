@@ -6,21 +6,14 @@ from playsound import playsound
 import os
 
 # The text that you want to convert to audio
-mytext = 'Hello this is an example text.. this should giv eyou an idea of how i sound!'
+
 
 # Language in which you want to convert
 language = 'en'
-
-# Passing the text and language to the engine,
-# here we have marked slow=False. Which tells
-# the module that the converted audio should
-# have a high speed
-myobj = gTTS(text=mytext, lang=language, slow=False)
-
-# Saving the converted audio in a mp3 file named
-# welcome
-myobj.save("welcome.mp3")
-playsound("welcome.mp3")
+myobj = gTTS(text="sure sir, here is what I found", lang=language, slow=False)
+myobj.save("reply.mp3")
+playsound("reply.mp3")
+os.remove("reply.mp3")
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
 engine.setProperty('volume',1.0)
