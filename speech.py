@@ -14,7 +14,7 @@ def sayOfffline(txt):
     engine.runAndWait()
 
 def sayOnline(txt):
-    myobj = gTTS(text=txt, lang=language, slow=False)
+    myobj = gTTS(text=txt, lang=language,tld="us", slow=False)
     myobj.save("reply.mp3")
     playsound("reply.mp3")
     os.remove("reply.mp3")
@@ -22,7 +22,7 @@ def sayOnline(txt):
 def say(txt):
     if(isOnline()):
         sayOnline(txt)
-    else
+    else:
         sayOfffline(txt)
 
 def isOnline():
