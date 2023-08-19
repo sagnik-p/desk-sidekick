@@ -1,9 +1,9 @@
 import os
 import openai
 
-file_path = "S:/key.txt"
-if os.path.isfile(file_path):
-    text_file = open(file_path, "r")
+file_path_apikey = "S:/key.txt"
+if os.path.isfile(file_path_apikey):
+    text_file = open(file_path_apikey, "r")
     data = text_file.read()
     text_file.close()
 else:

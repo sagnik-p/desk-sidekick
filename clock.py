@@ -34,8 +34,8 @@ def calculate_timezone_time(current_time, time_difference):
 
 
 # Example usage
-current_time = "0400"  # Replace this with your current time in HHMM format
-time_difference = "0900"  # Replace this with the time difference in HHMM format
+current_time = "2353"  # Replace this with your current time in HHMM format
+time_difference = "+0900"  # Replace this with the time difference in HHMM format
 
 
 
@@ -89,6 +89,15 @@ utc_diff = {
     "vietnam": "+0700",  # Indochina Time
 }
 
-new_time = calculate_timezone_time(current_time, utc_diff["colombia"])
-print(current_time + utc_diff["united kingdom"])
-print(f"New time at the specified timezone: {new_time}")
+new_time = calculate_timezone_time(current_time, utc_diff["italy"])
+
+def strTime(time):
+    hours_str=time[0:2]
+    mins_str=time[2:]
+    x=''
+    if(int(hours_str)>12):
+        x=' p m'
+    else:
+        x=' a m'
+    return hours_str +' '+ mins_str + x
+
