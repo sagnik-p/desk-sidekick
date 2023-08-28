@@ -9,15 +9,16 @@ if os.path.isfile(file_path_apikey):
 else:
     data = input("File not found, Enter API key")
 openai.api_key= data
-def getGPTAnswer(query,type):
-    if(type == "explain"):
-        query = " in simple words, explain in details " + query
+def getGPTAnswer(query,type="short"):
+    if(type == "explain" or type == "long"):
+        query = " in detail, tell me " + query
     elif(type == "short"):
-        query = " in short, explain " + query
+        query = " in a few words, tell me " + query
     print(query)
     chat = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=[{"role": "user", "content": query}],stream = True)
+    print(str(chat))
     return chat.choices[0].message.content
-def getDaVinviAnswer(prompt,type):
+def getDaVinviAnswer(prompt,type = "short"):
     if (type == "explain"):
         query = " in simple words, explain in details " + prompt
     elif (type == "short"):

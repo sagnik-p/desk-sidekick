@@ -1,5 +1,28 @@
 from datetime import *
 from datetime import datetime, timedelta
+import datetime
+import pytz
+def get_current_gmt_time_hhmm():
+    gmt_timezone = pytz.timezone("Etc/GMT")
+    gmt_time = datetime.datetime.now(gmt_timezone)
+    time_format = "%H%M"
+    gmt_time_hhmm = gmt_time.strftime(time_format)
+    return gmt_time_hhmm
+
+def convert_local_to_gmt():
+    local_timezone = "Asia/Kolkata"
+    local_time_hhmm = get_local_time_hhmm()
+    local_time_format = "%H%M"
+    local_time = datetime.datetime.strptime(local_time_hhmm, local_time_format)
+
+    local_timezone = pytz.timezone(local_timezone)
+    local_time = local_timezone.localize(local_time)
+
+    gmt_timezone = pytz.timezone("Etc/GMT")
+    gmt_time = local_time.astimezone(gmt_timezone)
+
+    gmt_time_hhmm = gmt_time.strftime(local_time_format)
+    return gmt_time_hhmm
 
 
 def calculate_timezone_time(current_time, time_difference):
@@ -34,8 +57,7 @@ def calculate_timezone_time(current_time, time_difference):
 
 
 # Example usage
-current_time = "2353"  # Replace this with your current time in HHMM format
-time_difference = "+0900"  # Replace this with the time difference in HHMM format
+
 
 
 
@@ -88,8 +110,11 @@ utc_diff = {
     "peru": "-0500",  # Peru Time
     "vietnam": "+0700",  # Indochina Time
 }
-
-new_time = calculate_timezone_time(current_time, utc_diff["italy"])
+def get_local_time_hhmm():
+    now = datetime.datetime.now()
+    time_format = "%H%M"
+    local_time_hhmm = now.strftime(time_format)
+    return local_time_hhmm
 
 def strTime(time):
     hours_str=time[0:2]
