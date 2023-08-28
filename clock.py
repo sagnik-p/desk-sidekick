@@ -67,54 +67,136 @@ def extract_country_names(text):
 
 
 utc_diff = {
-    "united states": "-0400",  # Eastern Daylight Time
-    "canada": "-0400",  # Eastern Daylight Time
-    "united kingdom": "+0100",  # British Summer Time
-    "australia": "+1000",  # Australian Eastern Standard Time
-    "india": "+0530",  # Indian Standard Time
-    "germany": "+0200",  # Central European Summer Time
-    "france": "+0200",  # Central European Summer Time
-    "japan": "+0900",  # Japan Standard Time
-    "china": "+0800",  # China Standard Time
-    "brazil": "-0300",  # Brasília Time
-    "mexico": "-0500",  # Central Daylight Time
-    "russia": "+0300",  # Moscow Standard Time
-    "south korea": "+0900",  # Korea Standard Time
-    "italy": "+0200",  # Central European Summer Time
-    "spain": "+0200",  # Central European Summer Time
-    "canada": "-0600",  # Central Daylight Time
-    "netherlands": "+0200",  # Central European Summer Time
-    "turkey": "+0300",  # Turkey Time
-    "australia": "+0800",  # Australian Western Standard Time
-    "indonesia": "+0700",  # Western Indonesia Time
-    "saudi arabia": "+0300",  # Arabian Standard Time
-    "switzerland": "+0200",  # Central European Summer Time
-    "argentina": "-0300",  # Argentina Time
-    "sweden": "+0200",  # Central European Summer Time
-    "belgium": "+0200",  # Central European Summer Time
-    "austria": "+0200",  # Central European Summer Time
-    "norway": "+0200",  # Central European Summer Time
-    "uae": "+0400",  # Gulf Standard Time
-    "poland": "+0200",  # Central European Summer Time
-    "south africa": "+0200",  # South Africa Standard Time
-    "thailand": "+0700",  # Indochina Time
-    "malaysia": "+0800",  # Malaysia Standard Time
-    "singapore": "+0800",  # Singapore Standard Time
-    "greece": "+0300",  # Eastern European Summer Time
-    "ukraine": "+0300",  # Eastern European Summer Time
-    "philippines": "+0800",  # Philippine Time
-    "portugal": "+0100",  # Western European Summer Time
-    "egypt": "+0200",  # Eastern European Summer Time
-    "hong kong": "+0800",  # Hong Kong Time
-    "colombia": "-0500",  # Colombia Time
-    "denmark": "+0200",  # Central European Summer Time
-    "finland": "+0300",  # Eastern European Summer Time
-    "chile": "-0400",  # Chile Standard Time
-    "ireland": "+0100",  # Irish Standard Time
-    "new zealand": "+1200",  # New Zealand Standard Time
-    "peru": "-0500",  # Peru Time
-    "vietnam": "+0700",  # Indochina Time
+    "afghanistan": "+0430",
+    "armenia": "+0400",
+    "azerbaijan": "+0400",
+    "bahrain": "+0300",
+    "bangladesh": "+0600",
+    "bhutan": "+0600",
+    "brunei": "+0800",
+    "cambodia": "+0700",
+    "china": "+0800",
+    "east_timor": "+0900",
+    "georgia": "+0400",
+    "india": "+0530",
+    "indonesia": "+0700",
+    "iran": "+0330",
+    "iraq": "+0300",
+    "israel": "+0300",
+    "japan": "+0900",
+    "jordan": "+0300",
+    "kazakhstan": "+0600",
+    "kuwait": "+0300",
+    "kyrgyzstan": "+0600",
+    "laos": "+0700",
+    "lebanon": "+0300",
+    "malaysia": "+0800",
+    "maldives": "+0500",
+    "mongolia": "+0800",
+    "myanmar": "+0630",
+    "nepal": "+0545",
+    "north_korea": "+0900",
+    "oman": "+0400",
+    "pakistan": "+0500",
+    "philippines": "+0800",
+    "qatar": "+0300",
+    "saudi_arabia": "+0300",
+    "singapore": "+0800",
+    "south_korea": "+0900",
+    "sri_lanka": "+0530",
+    "syria": "+0300",
+    "taiwan": "+0800",
+    "tajikistan": "+0500",
+    "thailand": "+0700",
+    "turkmenistan": "+0500",
+    "united_arab_emirates": "+0400",
+    "uzbekistan": "+0500",
+    "vietnam": "+0700",
+    "yemen": "+0300",
+    "india": "+0530",
+    "indonesia": "+0700",
+    "iran": "+0330",
+    "iraq": "+0300",
+    "israel": "+0300",
+    "japan": "+0900",
+    "jordan": "+0300",
+    "kazakhstan": "+0600",
+    "kuwait": "+0300",
+    "kyrgyzstan": "+0600",
+    "laos": "+0700",
+    "lebanon": "+0300",
+    "malaysia": "+0800",
+    "maldives": "+0500",
+    "mongolia": "+0800",
+    "myanmar": "+0630",
+    "nepal": "+0545",
+    "north_korea": "+0900",
+    "oman": "+0400",
+    "pakistan": "+0500",
+    "philippines": "+0800",
+    "qatar": "+0300",
+    "saudi_arabia": "+0300",
+    "singapore": "+0800",
+    "south_korea": "+0900",
+    "sri_lanka": "+0530",
+    "syria": "+0300",
+    "taiwan": "+0800",
+    "tajikistan": "+0500",
+    "thailand": "+0700",
+    "turkmenistan": "+0500",
+    "united_arab_emirates": "+0400",
+    "uzbekistan": "+0500",
+    "vietnam": "+0700",
+    "yemen": "+0300",
+    "albania": "+0200",
+    "andorra": "+0200",
+    "austria": "+0200",
+    "belarus": "+0300",
+    "belgium": "+0200",
+    "bosnia_and_herzegovina": "+0200",
+    "bulgaria": "+0300",
+    "croatia": "+0200",
+    "cyprus": "+0300",
+    "czech_republic": "+0200",
+    "denmark": "+0200",
+    "estonia": "+0300",
+    "finland": "+0300",
+    "france": "+0200",
+    "germany": "+0200",
+    "greece": "+0300",
+    "hungary": "+0200",
+    "iceland": "+0000",
+    "ireland": "+0100",
+    "italy": "+0200",
+    "kosovo": "+0200",
+    "latvia": "+0300",
+    "liechtenstein": "+0200",
+    "lithuania": "+0300",
+    "luxembourg": "+0200",
+    "malta": "+0200",
+    "moldova": "+0300",
+    "monaco": "+0200",
+    "montenegro": "+0200",
+    "netherlands": "+0200",
+    "north_macedonia": "+0200",
+    "norway": "+0200",
+    "poland": "+0200",
+    "portugal": "+0100",
+    "romania": "+0300",
+    "russia": "+0300",
+    "san_marino": "+0200",
+    "serbia": "+0200",
+    "slovakia": "+0200",
+    "slovenia": "+0200",
+    "spain": "+0200",
+    "sweden": "+0200",
+    "switzerland": "+0200",
+    "ukraine": "+0300",
+    "united_kingdom": "+0100",
+    "vatican_city": "+0200"
+    # ... (add more countries)
 }
+
 def get_local_time_hhmm():
     now = datetime.datetime.now()
     time_format = "%H%M"
