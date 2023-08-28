@@ -11,17 +11,17 @@ def classifyType(query):
     time: ask for time of different countries
     alarm: manage alarms'''
     for i in ["alarm","set an alarm","timer"]:
-        if(query.index(i)):
+        if (i in query):
             return "alarm"
     for i in ["time","what is the time"]:
-        if(query.index(i)):
-            return "alarm"
+        if (i in query):
+            return "time"
     for i in ["explain","detail","describe","why"]:
-        if(query.index(i)):
+        if (i in query):
             return "explain"
     for i in ["what","how","when"]:
-        if(query.index(i)):
+        if(i in query):
             return "short"
     for i in ["play","music","song"]:
-        if(query.index(i)):
+        if(i in query):
             return "song"

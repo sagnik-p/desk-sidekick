@@ -8,7 +8,7 @@ engine = pyttsx3.init()
 voices = engine.getProperty('voices')
 engine.setProperty('volume',1.0)
 engine.setProperty('voice', voices[1].id)
-engine.setProperty('rate', 100)
+engine.setProperty('rate', 175)
 def sayOfffline(txt):
     engine.say(txt)
     engine.runAndWait()

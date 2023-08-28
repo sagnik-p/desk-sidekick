@@ -1,5 +1,5 @@
-from datetime import *
-from datetime import datetime, timedelta
+from datetime import datetime
+import spacy
 import datetime
 import pytz
 def get_current_gmt_time_hhmm():
@@ -56,8 +56,13 @@ def calculate_timezone_time(current_time, time_difference):
     return new_hours_str + new_mins_str
 
 
-# Example usage
-
+def extract_country_names(text):
+    nlp = spacy.load("en_core_web_sm")
+    doc = nlp(text)
+    for ent in doc.ents:
+        if ent.label_ == "GPE":  # Geo-Political Entity label includes countries
+            return ent.text
+    return
 
 
 
@@ -116,8 +121,11 @@ def get_local_time_hhmm():
     local_time_hhmm = now.strftime(time_format)
     return local_time_hhmm
 
+
 def strTime(time):
     hours_str=time[0:2]
+    if(hours_str[0] == "0"):
+        hours_str=hours_str[1]
     mins_str=time[2:]
     x=''
     if(int(hours_str)>12):
@@ -126,3 +134,7 @@ def strTime(time):
         x=' a m'
     return hours_str +' '+ mins_str + x
 
+def timeQuery(query):
+    gmt_time = get_current_gmt_time_hhmm()
+    country_name_extracted = extract_country_names(query)
+    return "In " + country_name_extracted + " it is currently " + strTime(calculate_timezone_time(gmt_time, utc_diff[country_name_extracted]))
