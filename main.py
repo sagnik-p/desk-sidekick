@@ -6,7 +6,6 @@ import string
 import speech
 import voice_input
 
-speech.say(clock.timeQuery(voice_input.listen_and_recognize().lower()))
 
 
 
