@@ -2,8 +2,11 @@ import queries
 import spacy
 import classifier
 import clock
+import string
+import speech
+import voice_input
 
-print(clock.extract_country_names("time in peongyang"))
+speech.say(clock.timeQuery(voice_input.listen_and_recognize().lower()))
 
 
 
