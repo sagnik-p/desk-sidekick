@@ -24,4 +24,4 @@ def classifyType(query):
             return "short"
     for i in ["play","music","song"]:
         if(i in query):
-            return "song"
+            return "music"

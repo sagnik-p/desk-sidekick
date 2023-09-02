@@ -2,6 +2,9 @@ from datetime import datetime
 import spacy
 import datetime
 import pytz
+
+
+alarms=[]
 def get_current_gmt_time_hhmm():
     gmt_timezone = pytz.timezone("Etc/GMT")
     gmt_time = datetime.datetime.now(gmt_timezone)
@@ -79,7 +82,6 @@ utc_diff = {
     "east_timor": "+0900",
     "georgia": "+0400",
     "india": "+0530",
-    "indonesia": "+0700",
     "iran": "+0330",
     "iraq": "+0300",
     "israel": "+0300",
@@ -113,41 +115,7 @@ utc_diff = {
     "uzbekistan": "+0500",
     "vietnam": "+0700",
     "yemen": "+0300",
-    "india": "+0530",
     "indonesia": "+0700",
-    "iran": "+0330",
-    "iraq": "+0300",
-    "israel": "+0300",
-    "japan": "+0900",
-    "jordan": "+0300",
-    "kazakhstan": "+0600",
-    "kuwait": "+0300",
-    "kyrgyzstan": "+0600",
-    "laos": "+0700",
-    "lebanon": "+0300",
-    "malaysia": "+0800",
-    "maldives": "+0500",
-    "mongolia": "+0800",
-    "myanmar": "+0630",
-    "nepal": "+0545",
-    "north_korea": "+0900",
-    "oman": "+0400",
-    "pakistan": "+0500",
-    "philippines": "+0800",
-    "qatar": "+0300",
-    "saudi_arabia": "+0300",
-    "singapore": "+0800",
-    "south_korea": "+0900",
-    "sri_lanka": "+0530",
-    "syria": "+0300",
-    "taiwan": "+0800",
-    "tajikistan": "+0500",
-    "thailand": "+0700",
-    "turkmenistan": "+0500",
-    "united_arab_emirates": "+0400",
-    "uzbekistan": "+0500",
-    "vietnam": "+0700",
-    "yemen": "+0300",
     "albania": "+0200",
     "andorra": "+0200",
     "austria": "+0200",
@@ -220,3 +188,9 @@ def timeQuery(query):
     gmt_time = get_current_gmt_time_hhmm()
     country_name_extracted = extract_country_names(query)
     return "In " + country_name_extracted + " it is currently " + strTime(calculate_timezone_time(gmt_time, utc_diff[country_name_extracted]))
+
+def setAlarm(strtime):
+    if((strtime in alarms)):
+        return "Alarm already set for" + strTime(strtime)
+    alarms.append(strtime)
+    return "Your alarm is set for " + strTime(strtime)

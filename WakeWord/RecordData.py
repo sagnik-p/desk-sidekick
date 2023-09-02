@@ -9,6 +9,7 @@ def record_audio_and_save(save_path, n_times=50):
 
     Parameters
     ----------
+
     n_times: int, default=50
         The function will run n_times default is set to 50.
 
