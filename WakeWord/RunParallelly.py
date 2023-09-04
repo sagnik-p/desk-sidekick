@@ -1,29 +1,19 @@
 ###### IMPORTS ###################
+import os
 import threading
 import time
 import sounddevice as sd
 import librosa
 import numpy as np
 from tensorflow.keras.models import load_model
-import pyttsx3
 
-#### SETTING UP TEXT TO SPEECH ###
-engine = pyttsx3.init()
-voices = engine.getProperty('voices')
-engine.setProperty('voice', 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_DAVID_11.0')
-
-
-def speak(audio):
-    engine.say(audio)
-    engine.runAndWait()
-    engine.endLoop()
-
-
+listeningThreadRunning=False
+PredictionThreadRunning=False
 ##### CONSTANTS ################
-fs = 22050
+fs = 44100
 seconds = 2
 
-model = load_model(".\saved_model\WWD.h5")
+model = load_model(os.getcwd() + "/WakeWord\saved_model\WWD.h5")
 
 
 ##### LISTENING THREAD #########
@@ -34,25 +24,29 @@ def listener():
         mfcc = librosa.feature.mfcc(y=myrecording.ravel(), sr=fs, n_mfcc=40)
         mfcc_processed = np.mean(mfcc.T, axis=0)
         prediction_thread(mfcc_processed)
-        time.sleep(0.001)
+        time.sleep(1)
 
 
-def voice_thread():
+def listenForWW():
+    if(listeningThreadRunning):
+        listen_thread = threading.Thread(target=listener, name="ListeningFunction")
+        listeningThreadRunning=True
+        listen_thread.start()
+
+def stopListeningForWW():
     listen_thread = threading.Thread(target=listener, name="ListeningFunction")
-    listen_thread.start()
-
+    listeningThreadRunning=False
+    listen_thread.st()
 
 ##### PREDICTION THREAD #############
 def prediction(y):
     prediction = model.predict(np.expand_dims(y, axis=0))
     if prediction[:, 1] > 0.99:
-        if engine._inLoop:
-            engine.endLoop()
-        print("wakeword detected")
+        print("wakeword detected with confidence : ",end='')
+        print(prediction[:,1])
+        return True
+    return False
 
-
-
-    time.sleep(1)
 
 
 def prediction_thread(y):
@@ -60,4 +54,4 @@ def prediction_thread(y):
     pred_thread.start()
 
 
-voice_thread()
+listenForWW()
