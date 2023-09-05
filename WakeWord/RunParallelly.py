@@ -28,10 +28,9 @@ def listener():
 
 
 def listenForWW():
-    if(listeningThreadRunning):
-        listen_thread = threading.Thread(target=listener, name="ListeningFunction")
-        listeningThreadRunning=True
-        listen_thread.start()
+    listen_thread = threading.Thread(target=listener, name="ListeningFunction")
+    listeningThreadRunning=True
+    listen_thread.start()
 
 def stopListeningForWW():
     listen_thread = threading.Thread(target=listener, name="ListeningFunction")
