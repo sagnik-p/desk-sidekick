@@ -3,6 +3,7 @@ import queries
 import classifier
 import clock
 import speech
+import systemutil
 from WakeWord.RunModel import isWWDetected
 import voice_input
 
@@ -24,8 +25,13 @@ while True:
             print('music work')
             ##do music work
         elif(type=='alarm'):
-            print(" work")
-            #do alarm work
+            print("alarm work")
+            clock.alarmManager()
+        elif(type=='system'):
+            systemutil.openApp(q)
+            ans='opened successfully'
+        else:
+            ans = "Sorry Sir, I didnt get you"
         speech.say(ans)
     ##speech.say(clock.timeQuery("singapore time now"))
     ##speech.say(queries.getDaVinviAnswer("what is a diode"))

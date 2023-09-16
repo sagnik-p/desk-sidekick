@@ -21,4 +21,7 @@ def classifyType(query):
     for i in ["play","music","song"]:
         if(i in query):
             return "music"
+    for i in ["open","launch","start"]:
+        if(i in query):
+            return "system"
     return "nota"
