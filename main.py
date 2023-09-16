@@ -24,7 +24,7 @@ while True:
             print('music work')
             ##do music work
         elif(type=='alarm'):
-            print("music work")
+            print(" work")
             #do alarm work
         speech.say(ans)
     ##speech.say(clock.timeQuery("singapore time now"))

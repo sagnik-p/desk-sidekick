@@ -2,6 +2,7 @@ from datetime import datetime
 import spacy
 import datetime
 import pytz
+import time
 
 
 alarms=[]
@@ -194,3 +195,80 @@ def setAlarm(strtime):
         return "Alarm already set for" + strTime(strtime)
     alarms.append(strtime)
     return "Your alarm is set for " + strTime(strtime)
+
+
+# Function to get the current system time in HHMM format
+def get_current_time():
+    current_time = time.localtime()
+    return current_time.tm_hour * 100 + current_time.tm_min
+
+# Initialize the list of active alarms
+alarms = []
+
+# Function to add an alarm to the list
+def add_alarm(alarm_time):
+    alarms.append(alarm_time)
+    print(f"Alarm set for {alarm_time}.")
+
+# Function to delete an alarm from the list
+def delete_alarm(alarm_time):
+    if alarm_time in alarms:
+        alarms.remove(alarm_time)
+        print(f"Alarm {alarm_time} deleted.")
+    else:
+        print(f"Alarm {alarm_time} not found.")
+
+# Function to check how many alarms are present
+def count_alarms():
+    return len(alarms)
+
+# Main loop
+while True:
+    current_time = get_current_time()
+
+    # Check if any alarms need to be triggered
+    if current_time in alarms:
+        print(f"ALARM: It's {current_time}! Wake up!")
+        alarms.remove(current_time)
+
+    # Check for user input
+    user_input = input("Enter 'A' to add an alarm, 'D' to delete an alarm, 'C' to check the number of alarms, or 'Q' to quit: ").strip().upper()
+
+    if user_input == 'A':
+        new_alarm = input("Enter the alarm time in HHMM format: ").strip()
+        try:
+            new_alarm = int(new_alarm)
+            if 0 <= new_alarm < 2400:
+                add_alarm(new_alarm)
+            else:
+                print("Invalid time format. Please enter a valid HHMM time.")
+        except ValueError:
+            print("Invalid input. Please enter a valid HHMM time.")
+
+    elif user_input == 'D':
+        if alarms:
+            alarm_to_delete = input("Enter the alarm time to delete in HHMM format: ").strip()
+            try:
+                alarm_to_delete = int(alarm_to_delete)
+                if 0 <= alarm_to_delete < 2400:
+                    delete_alarm(alarm_to_delete)
+                else:
+                    print("Invalid time format. Please enter a valid HHMM time.")
+            except ValueError:
+                print("Invalid input. Please enter a valid HHMM time.")
+        else:
+            print("No alarms to delete.")
+
+    elif user_input == 'C':
+        num_alarms = count_alarms()
+        if num_alarms == 1:
+            print("There is 1 alarm set.")
+        else:
+            print(f"There are {num_alarms} alarms set.")
+
+    elif user_input == 'Q':
+        print("Exiting the alarm clock program.")
+        break
+
+    else:
+        print("Invalid input. Please enter 'A', 'D', 'C', or 'Q'.")

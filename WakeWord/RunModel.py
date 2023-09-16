@@ -28,7 +28,7 @@ def isWWDetected():
     mfcc_processed = np.mean(mfcc.T, axis=0)
 
     prediction = model.predict(np.expand_dims(mfcc_processed, axis=0))
-    if prediction[:, 1] > 0.99:
+    if prediction[:, 1] > 0.9:
         return True
     else:
         return False
