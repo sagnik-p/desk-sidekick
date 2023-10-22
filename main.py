@@ -4,26 +4,21 @@ import classifier
 import clock
 import speech
 import systemutil
-from WakeWord.RunModel import isWWDetected
 import voice_input
 
 while True:
     if(WakeWord.RunModel.isWWDetected()):
         print("Listening:")
         q=voice_input.listen_and_recognize()
-        print("query: "+q )
+        print("query heard: "+q )
         type=classifier.classifyType(q)
         print("query type: "+type )
-        ans="hello sir"
         if(type=='time'):
             ans = clock.timeQuery(q)
         elif(type=='explain'):
             ans = queries.getDaVinviAnswer(q,'explain')
         elif(type=='short'):
-            ans = queries.getDaVinviAnswer((q))
-        elif(type=="music"):
-            print('music work')
-            ##do music work
+            ans = queries.getDaVinviAnswer(q,'short')
         elif(type=='alarm'):
             print("alarm work")
             clock.alarmManager()
@@ -33,9 +28,6 @@ while True:
         else:
             ans = "Sorry Sir, I didnt get you"
         speech.say(ans)
-    ##speech.say(clock.timeQuery("singapore time now"))
-    ##speech.say(queries.getDaVinviAnswer("what is a diode"))
-
 
 
 
