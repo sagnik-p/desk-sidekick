@@ -1,5 +1,6 @@
 # desk-sidekick
-This is basically a python based voice assistant
+This is basically a python based voice assistant.
+
 Just keep it running in the background and let it do its magic.
 
 NOTE: while the assistant is running, you wont be able to use your device microphone. To solve this issue, use an external mic or mic of earphones.
@@ -30,3 +31,7 @@ just run the following scripts in order and follow the on screen instructions:
 Features:
 Short answer to queries, detailed answer to queries, time of any place, weather of any place, open system apps.
 * currently, alarm mode is in text interactive mode only.
+
+### Feedback and PRs appreciated
+
+# THANKS
