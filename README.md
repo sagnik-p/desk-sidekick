@@ -3,7 +3,7 @@ This is basically a python based voice assistant.
 
 Just keep it running in the background and let it do its magic.
 
-NOTE: while the assistant is running, you wont be able to use your device microphone. To solve this issue, use an external mic or mic of earphones.
+NOTE: while the assistant is running, you wont be able to use your device microphone. To solve this issue, use an external mic
 
 
 To get started,
